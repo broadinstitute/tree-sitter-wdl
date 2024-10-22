@@ -17,9 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdidion/tree-sitter-wdl.git"
+    "url": "git+https://github.com/broadinstitute/tree-sitter-wdl.git"
   },
   "author": "John Didion",
+  "contributors": [
+    "Lucas van Dijk"
+  ],
   "license": "MIT",
   "dependencies": {
     "nan": "^2.17.0"
@@ -30,14 +33,5 @@
   "bugs": {
     "url": "https://github.com/jdidion/tree-sitter-wdl/issues"
   },
-  "homepage": "https://github.com/jdidion/tree-sitter-wdl",
-  "tree-sitter": [
-    {
-      "scope": "source.wdl",
-      "file-types": [
-        "wdl"
-      ],
-      "injection-regex": "wdl"
-    }
-  ]
+  "homepage": "https://github.com/jdidion/tree-sitter-wdl"
 }

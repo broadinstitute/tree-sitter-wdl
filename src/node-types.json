@@ -710,6 +710,7 @@
   {
     "type": "document",
     "named": true,
+    "root": true,
     "fields": {
       "body": {
         "multiple": false,

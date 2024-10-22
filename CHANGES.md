@@ -1,5 +1,10 @@
 # tree-sitter-wdl-1 changes
 
+## v0.1.7
+
+* Updated to newer tree-sitter version
+* Moved external scanner from C++ to the C API, which is more widely supported
+
 ## v0.1.6
 
 * Add convenience function for parsing a document to Rust bindings

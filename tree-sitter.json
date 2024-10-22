@@ -1,0 +1,38 @@
+{
+  "grammars": [
+    {
+      "name": "wdl",
+      "camelcase": "Wdl",
+      "scope": "source.wdl",
+      "path": ".",
+      "file-types": [
+        "wdl"
+      ],
+      "injection-regex": "wdl"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "TreeSitter grammar for WDL v1.1",
+    "authors": [
+      {
+        "name": "John Didion"
+      },
+      {
+        "name": "Lucas van Dijk"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/jdidion/tree-sitter-wdl.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

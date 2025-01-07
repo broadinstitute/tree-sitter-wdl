@@ -14,7 +14,7 @@ const KEYWORD = {
     pair: "Pair",
     object: "Object",
 
-    // expressions 
+    // expressions
     if: "if",
     then: "then",
     else: "else",
@@ -323,7 +323,7 @@ module.exports = grammar({
             )
         ),
 
-        // Consider the command `echo ">>\n"` - there is no way to parse 
+        // Consider the command `echo ">>\n"` - there is no way to parse
         // this without also allowing `echo ">>>"`.
         // command_heredoc_content: $ => choice(
         //     />{0,2}[^~>\\]+/,
@@ -639,6 +639,12 @@ module.exports = grammar({
             )
         ),
 
+        placeholder_option: $ => seq(
+            $.identifier,
+            OPER.assign,
+            $.string
+        ),
+
         placeholder: $ => prec(1, choice(
             $._tilde_placeholder,
             $._dollar_placeholder
@@ -646,6 +652,9 @@ module.exports = grammar({
 
         _tilde_placeholder: $ => seq(
             SYMBOL.tilde_placeholder,
+            repeat(
+                prec(10, field("option", $.placeholder_option))
+            ),
             field("expression", $._expression),
             SYMBOL.rbrace
         ),

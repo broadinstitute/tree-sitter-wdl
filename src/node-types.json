@@ -1739,7 +1739,36 @@
             "named": true
           }
         ]
+      },
+      "option": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "placeholder_option",
+            "named": true
+          }
+        ]
       }
+    }
+  },
+  {
+    "type": "placeholder_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
     }
   },
   {

@@ -2417,6 +2417,23 @@
         ]
       }
     },
+    "placeholder_option": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
     "placeholder": {
       "type": "PREC",
       "value": 1,
@@ -2440,6 +2457,21 @@
         {
           "type": "STRING",
           "value": "~{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PREC",
+            "value": 10,
+            "content": {
+              "type": "FIELD",
+              "name": "option",
+              "content": {
+                "type": "SYMBOL",
+                "name": "placeholder_option"
+              }
+            }
+          }
         },
         {
           "type": "FIELD",

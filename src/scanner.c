@@ -3,7 +3,9 @@
 
 const char HEREDOC_END = '>';
 const char LBRACE = '{';
+const char RBRACE = '}';
 const char TILDE = '~';
+const char DOLLAR = '$';
 const char ESCAPE = '\\';
 const char NEWLINE = '\n';
 
@@ -63,11 +65,20 @@ bool tree_sitter_wdl_external_scanner_scan(
                 lexer->mark_end(lexer);
                 lexer->advance(lexer, false);
                 if (lexer->lookahead == NEWLINE)
+                {
                     has_content = true;
+                }
                 else if (has_content)
                 {
-                    lexer->result_symbol = COMMAND_CONTENT;
-                    return true;
+                    // Check for escpable WDL things 
+                    if (lexer->lookahead == TILDE 
+                        || lexer->lookahead == RBRACE 
+                        || lexer->lookahead == HEREDOC_END 
+                        || lexer->lookahead == ESCAPE)
+                    {
+                        lexer->result_symbol = COMMAND_CONTENT;
+                        return true;
+                    }                
                 }
                 else
                     return false;

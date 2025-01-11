@@ -829,6 +829,15 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
+              "name": "command_escape_sequence"
+            },
+            "named": true,
+            "value": "escape_sequence"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
               "name": "command_brace_content"
             },
             "named": true,
@@ -842,7 +851,7 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "([^~$}]|\\\\\\n)+"
+          "value": "([^~$}\\\\]|\\\\\\n)+"
         },
         {
           "type": "STRING",
@@ -860,13 +869,17 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "SYMBOL",
+            "name": "placeholder"
+          },
+          {
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "_tilde_placeholder"
+              "name": "command_escape_sequence"
             },
             "named": true,
-            "value": "placeholder"
+            "value": "escape_sequence"
           },
           {
             "type": "ALIAS",
@@ -878,6 +891,26 @@
             "value": "content"
           }
         ]
+      }
+    },
+    "command_escape_sequence": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[>}~$\\\\]"
+            }
+          ]
+        }
       }
     },
     "runtime": {

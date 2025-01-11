@@ -583,10 +583,6 @@
           "named": true
         },
         {
-          "type": "escape_sequence",
-          "named": true
-        },
-        {
           "type": "placeholder",
           "named": true
         }

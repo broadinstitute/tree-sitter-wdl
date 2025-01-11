@@ -308,21 +308,19 @@ module.exports = grammar({
         command_brace_parts: $ => repeat1(
             choice(
                 $.placeholder,
-                alias($.command_escape_sequence, $.escape_sequence),
                 alias($.command_brace_content, $.content)
             )
         ),
 
         command_brace_content: $ => choice(
-            /([^~$}\\]|\\\n)+/,
+            /([^~$}]|\\\n)+/,
             "~",
             "$"
         ),
 
         command_heredoc_parts: $ => repeat1(
             choice(
-                $.placeholder,
-                alias($.command_escape_sequence, $.escape_sequence),
+                alias($._tilde_placeholder, $.placeholder),
                 alias($.command_heredoc_content, $.content)
             )
         ),
@@ -334,12 +332,7 @@ module.exports = grammar({
         //     />{1,2}~[^{]/,
         //     "\\\n",
         //     "~"
-        // ),de
-
-        command_escape_sequence: $ => token(prec(1, seq(
-            SYMBOL.escape,
-            /[>}~$\\]/
-        ))),
+        // ),
 
         runtime: $ => seq(
             KEYWORD.runtime,

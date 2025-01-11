@@ -20,9 +20,10 @@ workflow Test {
     String s8 = 'hello "John", how are you?'
     String s9 = "hello ~{name}, how are you?"
     String s10 = "hello \"~{name}\", how are you?"
-    String s11 = "hello ~{sep(" ", ['John', 'Doe'])}, how are you?"
+    String s11 = "hello ~{sep=" " ['John', 'Doe']}, how are you?"
     String s12 = "hello ~{if b then "~{name}" else "Buddy"}"
     String s13 = "~ $"
+    String s14 = "hello ~{sep(" ", ['John', 'Doe'])}, how are you?"
 }
 
 ---
@@ -160,31 +161,19 @@ workflow Test {
                         parts: (string_parts
                             (content)
                             (placeholder
-                                expression: (apply_expression
-                                    name: (identifier)
-                                    arguments: (argument_list
+                                option: (placeholder_option
+                                    (option_key)
+                                    value: (simple_string
+                                        parts: (string_parts
+                                            (content))))
+                                expression: (array
+                                    elements: (array_elements
                                         (string
                                             parts: (string_parts
-                                                (content)
-                                            )
-                                        )
-                                        (array
-                                            elements: (array_elements
-                                                (string
-                                                    parts: (string_parts
-                                                        (content)
-                                                    )
-                                                )
-                                                (string
-                                                    parts: (string_parts
-                                                        (content)
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
+                                                (content)))
+                                        (string
+                                            parts: (string_parts
+                                                (content))))))
                             (content)
                         )
                     )
@@ -222,6 +211,42 @@ workflow Test {
                         parts: (string_parts
                             (content)
                             (content)
+                            (content)
+                        )
+                    )
+                )
+                (bound_declaration
+                    type: (string_type)
+                    name: (identifier)
+                    expression: (string
+                        parts: (string_parts
+                            (content)
+                            (placeholder
+                                expression: (apply_expression
+                                    name: (identifier)
+                                    arguments: (argument_list
+                                        (string
+                                            parts: (string_parts
+                                                (content)
+                                            )
+                                        )
+                                        (array
+                                            elements: (array_elements
+                                                (string
+                                                    parts: (string_parts
+                                                        (content)
+                                                    )
+                                                )
+                                                (string
+                                                    parts: (string_parts
+                                                        (content)
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
                             (content)
                         )
                     )

@@ -2417,20 +2417,66 @@
         ]
       }
     },
+    "option_key": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "key",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "sep"
+                },
+                {
+                  "type": "STRING",
+                  "value": "default"
+                },
+                {
+                  "type": "STRING",
+                  "value": "true"
+                },
+                {
+                  "type": "STRING",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          }
+        ]
+      }
+    },
     "placeholder_option": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "option_key"
         },
         {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "simple_string"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_number"
+              }
+            ]
+          }
         }
       ]
     },
@@ -2461,15 +2507,11 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "PREC",
-            "value": 10,
+            "type": "FIELD",
+            "name": "option",
             "content": {
-              "type": "FIELD",
-              "name": "option",
-              "content": {
-                "type": "SYMBOL",
-                "name": "placeholder_option"
-              }
+              "type": "SYMBOL",
+              "name": "placeholder_option"
             }
           }
         },

@@ -1755,17 +1755,40 @@
   {
     "type": "placeholder_option",
     "named": true,
-    "fields": {},
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "dec_int",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "hex_int",
+            "named": true
+          },
+          {
+            "type": "oct_int",
+            "named": true
+          },
+          {
+            "type": "simple_string",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "string",
+          "type": "option_key",
           "named": true
         }
       ]
@@ -2652,6 +2675,10 @@
   },
   {
     "type": "oct_int",
+    "named": true
+  },
+  {
+    "type": "option_key",
     "named": true
   },
   {

@@ -42,7 +42,11 @@ const KEYWORD = {
     true: "true",
     false: "false",
     none: "None",
-    null: "null"
+    null: "null",
+    
+    // Placeholder options
+    sep: "sep",
+    default: "default"
 }
 
 // operators
@@ -638,11 +642,25 @@ module.exports = grammar({
                 alias(/[^"\\\n]+/, $.content)
             )
         ),
+        
+        // We combine the option key with the assign operator as a single token
+        // to avoid the case where sep(" ", array) would be recognized as an option key.
+        option_key: _ => token(seq(
+            field("key", choice(
+                KEYWORD.sep,
+                KEYWORD.default,
+                KEYWORD.true,
+                KEYWORD.false
+            )),
+            OPER.assign,
+        )),
 
         placeholder_option: $ => seq(
-            $.identifier,
-            OPER.assign,
-            $.string
+            $.option_key,
+            field("value", choice(
+                $.simple_string,
+                $._number
+            )),
         ),
 
         placeholder: $ => prec(1, choice(
@@ -653,7 +671,7 @@ module.exports = grammar({
         _tilde_placeholder: $ => seq(
             SYMBOL.tilde_placeholder,
             repeat(
-                prec(10, field("option", $.placeholder_option))
+                field("option", $.placeholder_option)
             ),
             field("expression", $._expression),
             SYMBOL.rbrace

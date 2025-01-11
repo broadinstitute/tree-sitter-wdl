@@ -58,6 +58,20 @@ bool tree_sitter_wdl_external_scanner_scan(
                 else
                     has_content = true;
             }
+            else if (lexer->lookahead == ESCAPE)
+            {
+                lexer->mark_end(lexer);
+                lexer->advance(lexer, false);
+                if (lexer->lookahead == NEWLINE)
+                    has_content = true;
+                else if (has_content)
+                {
+                    lexer->result_symbol = COMMAND_CONTENT;
+                    return true;
+                }
+                else
+                    return false;
+            }
             else if (lexer->lookahead == HEREDOC_END)
             {
                 // we're in `command <<<` and the next character is `>` - look for

@@ -70,7 +70,7 @@ bool tree_sitter_wdl_external_scanner_scan(
                 }
                 else if (has_content)
                 {
-                    // Check for escpable WDL things 
+                    // Check for escapable WDL things, \~ \} \> or double backslash \\.
                     if (lexer->lookahead == TILDE 
                         || lexer->lookahead == RBRACE 
                         || lexer->lookahead == HEREDOC_END 

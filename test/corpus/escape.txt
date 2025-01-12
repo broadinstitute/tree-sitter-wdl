@@ -1,0 +1,57 @@
+============================
+Escape sequences in commands
+============================
+
+version 1.0
+
+task Minimap2 {
+    input {
+        File ref_fasta
+    }
+    command <<<
+        set -euxo pipefail
+        
+        path="~{ref_fasta}"
+        fname="${path##*/}"
+        
+        echo "\>>>"
+        echo "\~{"
+        
+        if [[ "${fname}" =~ \.gz$ ]]; then
+            gunzip -c ~{ref_fasta} > "${fname}"
+        else
+            cp ~{ref_fasta} "${fname}"
+        fi
+    >>>
+}
+
+---
+
+(document
+    version: (version
+        identifier: (float))
+    body: (document_body
+        (task
+            name: (identifier)
+            body: (task_elements
+                (input
+                    declarations: (input_declarations
+                        (unbound_declaration
+                            type: (file_type)
+                            name: (identifier))))
+                (command
+                    parts: (command_parts
+                        (content)
+                        (placeholder
+                            expression: (identifier))
+                        (content)
+                        (escape_sequence)
+                        (content)
+                        (escape_sequence)
+                        (content)
+                        (placeholder
+                            expression: (identifier))
+                        (content)
+                        (placeholder
+                            expression: (identifier))
+                        (content)))))))

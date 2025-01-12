@@ -16,6 +16,6 @@ workflow Test {
     String s9 = "hello ~{name}, how are you?"
     String s10 = "hello \"~{name}\", how are you?"
     String s11 = "hello ~{sep=" " ['John', 'Doe']}, how are you?"
-    String s11 = "FooBar ~{true="foo" false="bar" true}, test"
-    String s11 = "hello ~{sep(" ", ['John', 'Doe'])}, how are you?"
+    String s12 = "FooBar ~{true="foo" false="bar" true}, test"
+    String s13 = "hello ~{sep(" ", ['John', 'Doe'])}, how are you?"
 }

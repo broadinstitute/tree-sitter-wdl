@@ -5,9 +5,10 @@ on:
       - "**"
   push:
     branches:
-      - "main"
+      - "**"
 jobs:
   test:
+    name: Test tree-sitter grammar
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true

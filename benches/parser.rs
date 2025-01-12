@@ -1,7 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
 use std::{fs, path::PathBuf};
 use tree_sitter::TreeCursor;
-use tree_sitter_wdl_1;
 
 pub fn benchmark_parser(c: &mut Criterion) {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
@@ -27,7 +26,7 @@ pub fn benchmark_parser(c: &mut Criterion) {
     });
 }
 
-fn exhaust_recursive<'a>(tree: &mut TreeCursor<'a>, ancestors: &mut Vec<usize>) {
+fn exhaust_recursive(tree: &mut TreeCursor, ancestors: &mut Vec<usize>) {
     let node = tree.node();
     if tree.goto_first_child() {
         ancestors.push(node.id());
@@ -45,7 +44,7 @@ enum State {
     Iterating,
 }
 
-fn exhaust_iterative<'a>(tree: &mut TreeCursor<'a>) {
+fn exhaust_iterative(tree: &mut TreeCursor) {
     let mut ancestors = Vec::new();
     let mut state = State::Pending(tree.node().id());
     loop {

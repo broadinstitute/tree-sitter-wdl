@@ -7,12 +7,12 @@ extern "C" {
 }
 
 /// The source of the WDL tree-sitter grammar description.
-pub const GRAMMAR: &'static str = include_str!("../../grammar.js");
+pub const GRAMMAR: &str = include_str!("../../grammar.js");
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
-pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
+pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 /// Returns the tree-sitter [Language][] for this grammar.
 ///
@@ -47,7 +47,7 @@ pub fn parse_document(text: &str) -> Result<tree_sitter::Tree, ParserError> {
     let mut parser = parser()?;
     parser
         .parse(text, None)
-        .ok_or_else(|| ParserError::DocumentEmpty)
+        .ok_or(ParserError::DocumentEmpty)
 }
 
 #[cfg(test)]

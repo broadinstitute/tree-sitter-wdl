@@ -1,8 +1,27 @@
 # tree-sitter-wdl
 
 [Tree-sitter](https://github.com/tree-sitter/tree-sitter) grammar for [WDL](https://openwdl.org/) (Workflow Description Language).
+Supports WDL version 1.0 and 1.1. Tree-sitter grammars are often used by code editors for syntax highlighting, code folding, 
+and much more.
 
-## Usage
+Examples:
+
+* WDL extension for [Zed](https://zed.dev): [zed-wdl](https://github.com/broadinstitute/zed-wdl)
+
+## Acknowledgements
+
+This repository is based on the [tree-sitter-wdl](https://github.com/jdidion/tree-sitter-wdl) from John Didion, who wrote the 
+vast majority of the grammar. This repository fixes a couple of things:
+
+* Add support for WDL 1.0 sep="", true="", false="", and default="" place holder options (e.g., `${sep="," file_names}`)
+* Fix parsing of escaped characters in command blocks, which caused some bash scripts to be parsed incorrectly.
+
+## Bindings
+
+Tree-sitter grammers can be used with many different programming languages, and this repository contains bindings
+to Rust, Python, Node.js, Go, Swift, and C. Example usage of the Rust bindings is shown below.
+
+### Rust binding examples
 
 See the [Tree-sitter documentation](https://tree-sitter.github.io/tree-sitter/using-parsers) for the list of available language bindings and basic usage information. To use the [Rust binding](https://crates.io/crates/tree-sitter-wdl-1), add the following to your Cargo.toml:
 

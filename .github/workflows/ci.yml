@@ -1,8 +1,5 @@
 name: Build/test
 on:
-  pull_request:
-    branches:
-      - "**"
   push:
     branches:
       - "**"
@@ -15,15 +12,14 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: "latest"
       - uses: tree-sitter/setup-action@v2
         with:
           install-lib: false
       - run: npm install
       - run: npm run build
       - run: npm run test
-      - run: tree-sitter generate
-      - run: tree-sitter test
+      

@@ -5,7 +5,7 @@ version = "0.1.0"
 keywords = ["incremental", "parsing", "wdl"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/broadinstitute/tree-sitter-wdl"
-edition = "2018"
+edition = "2021"
 license = "MIT"
 build = "bindings/rust/build.rs"
 include = [
@@ -19,9 +19,9 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-serde_json = { version = "1.0.93", optional = true } 
-thiserror = "1.0.38"
-tree-sitter = "0.20.9"
+serde_json = { version = "1.0.135", optional = true } 
+thiserror = "2.0.11"
+tree-sitter = "0.24.7"
 
 [build-dependencies]
 cc = "1.0"

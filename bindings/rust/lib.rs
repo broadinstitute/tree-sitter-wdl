@@ -38,7 +38,7 @@ pub enum ParserError {
 pub fn parser() -> Result<tree_sitter::Parser, ParserError> {
     let mut parser = tree_sitter::Parser::new();
     parser
-        .set_language(language())
+        .set_language(&language())
         .map_err(|source| ParserError::Language { source })?;
     Ok(parser)
 }

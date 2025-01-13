@@ -31,3 +31,6 @@ dist/
 *.dll
 *.pc
 *.o
+
+# Python artifacts
+__pycache__/

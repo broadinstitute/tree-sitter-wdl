@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 project(tree-sitter-wdl
         VERSION "0.1.0"
         DESCRIPTION "TreeSitter grammar for WDL v1.1"
-        HOMEPAGE_URL "git+https://github.com/jdidion/tree-sitter-wdl.git"
+        HOMEPAGE_URL "git+https://github.com/broadinstitute/tree-sitter-wdl.git"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)

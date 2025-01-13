@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-wdl",
   "version": "0.1.0",
-  "description": "TreeSitter grammar for WDL v1.1",
+  "description": "TreeSitter grammar for WDL v1.x",
   "main": "bindings/node",
   "keywords": [
     "parser",
@@ -31,7 +31,7 @@
     "tree-sitter-cli": "^0.20.7"
   },
   "bugs": {
-    "url": "https://github.com/jdidion/tree-sitter-wdl/issues"
+    "url": "https://github.com/broadinstitute/tree-sitter-wdl/issues"
   },
-  "homepage": "https://github.com/jdidion/tree-sitter-wdl"
+  "homepage": "https://github.com/broadinstitute/tree-sitter-wdl"
 }

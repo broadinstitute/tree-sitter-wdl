@@ -14,7 +14,7 @@
   "metadata": {
     "version": "0.1.0",
     "license": "MIT",
-    "description": "TreeSitter grammar for WDL v1.1",
+    "description": "TreeSitter grammar for WDL v1.x",
     "authors": [
       {
         "name": "John Didion"
@@ -24,7 +24,7 @@
       }
     ],
     "links": {
-      "repository": "git+https://github.com/jdidion/tree-sitter-wdl.git"
+      "repository": "https://github.com/broadinstitute/tree-sitter-wdl"
     }
   },
   "bindings": {

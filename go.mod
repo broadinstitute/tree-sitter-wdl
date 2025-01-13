@@ -1,4 +1,4 @@
-module git+github.com/jdidion/tree-sitter-wdl.git
+module git+github.com/broadinstitute/tree-sitter-wdl.git
 
 go 1.22
 

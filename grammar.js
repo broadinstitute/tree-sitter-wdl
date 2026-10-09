@@ -314,7 +314,7 @@ module.exports = grammar({
         ),
 
         command_brace_content: $ => choice(
-            /([^~$}\\]|\\\n)+/,
+            /([^~$}\\]|\\[^>}~$\\])+/,
             "~",
             "$"
         ),
@@ -597,7 +597,7 @@ module.exports = grammar({
         ),
 
         string_squote_content: $ => choice(
-            /[^'~$\\\n]+/,
+            token(prec(1, /[^'~$\\\n]+/)),
             "~",
             "$"
         ),
@@ -611,7 +611,7 @@ module.exports = grammar({
         ),
 
         string_dquote_content: $ => choice(
-            /[^"~$\\\n]+/,
+            token(prec(1, /[^"~$\\\n]+/)),
             "~",
             "$"
         ),
@@ -632,14 +632,14 @@ module.exports = grammar({
         simple_string_squote_parts: $ => repeat1(
             choice(
                 $.escape_sequence,
-                alias(/[^'\\\n]+/, $.content)
+                alias(token(prec(1, /[^'\\\n]+/)), $.content)
             )
         ),
 
         simple_string_dquote_parts: $ => repeat1(
             choice(
                 $.escape_sequence,
-                alias(/[^"\\\n]+/, $.content)
+                alias(token(prec(1, /[^"\\\n]+/)), $.content)
             )
         ),
         
@@ -652,6 +652,7 @@ module.exports = grammar({
                 KEYWORD.true,
                 KEYWORD.false
             )),
+            /[ \t]*/,
             OPER.assign,
         )),
 
@@ -679,6 +680,9 @@ module.exports = grammar({
 
         _dollar_placeholder: $ => seq(
             SYMBOL.dollar_placeholder,
+            repeat(
+                field("option", $.placeholder_option)
+            ),
             field("expression", $._expression),
             SYMBOL.rbrace
         ),
@@ -830,6 +834,8 @@ module.exports = grammar({
         ),
 
         // TODO: how to ensure a full-line comment is not nested under another node
+        // String content tokens carry prec(1) so a `#` at the start of string content (or right after a
+        // placeholder or escape) is content, not the start of a comment that would run to the end of the line.
         comment: $ => token(seq(SYMBOL.comment, /.*/))
     }
 });
